@@ -38,7 +38,7 @@ Le projet est développé avec **Node.js**, **Express**, et **SQLite** comme bas
 1. Clonez ce dépôt dans votre environnement local :
 
    ```bash
-   git clone https://github.com/votre-utilisateur/votre-projet.git
+   https://github.com/Akon2020/Projet-Tutore-2024-UCB.git
    ```
 
 2. Naviguez dans le répertoire du projet :

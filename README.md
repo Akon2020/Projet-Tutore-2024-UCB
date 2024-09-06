@@ -44,7 +44,7 @@ Le projet est développé avec **Node.js**, **Express**, et **SQLite** comme bas
 2. Naviguez dans le répertoire du projet :
 
    ```bash
-   cd votre-projet
+   cd Projet-Tutore-2024-UCB
    ```
 
 3. Installez les dépendances du projet :
@@ -75,7 +75,7 @@ Le projet est développé avec **Node.js**, **Express**, et **SQLite** comme bas
 
 7. Initialisez les tables SQLite :
 
-   Dans le fichier `server.js`, les tables pour les utilisateurs et les incidents sont créées automatiquement si elles n'existent pas. Vous pouvez démarrer le serveur directement.
+   Dans le fichier `index.js`, les tables pour les utilisateurs et les incidents sont créées automatiquement si elles n'existent pas. Vous pouvez démarrer le serveur directement.
 
 ## Démarrage
 

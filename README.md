@@ -1,5 +1,3 @@
-Voici un exemple de fichier `README.md` que vous pouvez utiliser pour votre projet :
-
 ```md
 # Système de Gestion de Sécurité Publique avec Notifications Push et SQLite
 

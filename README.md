@@ -1,167 +1,243 @@
-```md
-# Système de Gestion de Sécurité Publique avec Notifications Push et SQLite
+```markdown
+# Public Safety Incident Management System
 
-## Description
+This project is a public safety incident management system designed to allow users to report incidents, and for patrol teams to manage, track, and resolve these incidents. The system supports roles-based access control and real-time notifications via Firebase.
 
-Ce projet est un système de gestion de sécurité publique conçu pour signaler des incidents en temps réel, suivre leur statut et permettre aux patrouilles d'intervenir. L'application envoie des notifications push via Firebase à différents types d'utilisateurs : utilisateurs, patrouilleurs, administrateurs, et super administrateurs.
+## Features
 
-Le projet est développé avec **Node.js**, **Express**, et **SQLite** comme base de données locale. Les utilisateurs peuvent signaler des incidents, et les patrouilleurs peuvent prendre en charge et résoudre ces incidents. Le système gère les différents rôles et assure la sécurité des endpoints via JWT.
+- **User roles:**
+  - Regular users can report incidents.
+  - Patrol users can take responsibility for incidents and resolve them.
+  - Admins can manage patrol teams and incidents.
+  - Super Admins have full control over the system.
+  
+- **Incident Reporting:**
+  - Users can report incidents with location data and upload images.
+  - Patrol teams can take over incidents and mark them as resolved.
+  
+- **Notifications:**
+  - Real-time push notifications for all users.
+  - Patrol users receive location and incident details.
+  
+- **Map Integration:**
+  - Incidents are geolocated and displayed on a map using Mapbox.
+  
+- **Incident Status Tracking:**
+  - Track incidents by their status: Help, In Progress, Resolved.
 
-### Fonctionnalités principales
+## Tech Stack
 
-- Signalement d'incidents en temps réel avec coordonnées géographiques et images.
-- Notifications push envoyées à tous les utilisateurs via Firebase.
-- Statut des incidents : en cours de traitement, résolu, à traiter (help).
-- Patrouilleurs peuvent prendre et résoudre des incidents, et leur géolocalisation est enregistrée.
-- Authentification JWT et gestion des rôles pour sécuriser les API.
-- Types d'utilisateurs : utilisateur, patrouille, admin, super admin.
-- Gestion des patrouilles avec assignation des membres et traitement des incidents.
+- **Backend:**
+  - Node.js with Express.js
+  - MySQL for data storage
+  - Firebase for notifications
+  - JWT for authentication
 
-## Technologies Utilisées
+- **Frontend:**
+  - React.js for web interface
+  - React Native for mobile app
 
-- **Backend**: Node.js, Express.js
-- **Base de données**: SQLite
-- **Notifications Push**: Firebase
-- **Authentification**: JWT (JSON Web Token)
-- **Stockage d'images**: Local file system
+- **Other Tools:**
+  - Mapbox for map and geolocation
+  - Cloudinary (or local storage) for image handling
+  - Firebase for push notifications
 
-## Installation
+## Project Structure
 
-### Pré-requis
+```
+project-root/
+│
+├── controllers/
+│   ├── authController.js
+│   ├── incidentController.js
+│   └── patrolController.js
+│
+├── middleware/
+│   ├── authMiddleware.js
+│   ├── rolesMiddleware.js
+│   ├── uploadMiddleware.js
+│   └── validators.js
+│
+├── models/
+│   ├── User.js
+│   ├── Incident.js
+│   └── Patrol.js
+│
+├── routes/
+│   ├── authRoutes.js
+│   ├── incidentRoutes.js
+│   └── patrolRoutes.js
+│
+├── services/
+│   ├── firebaseService.js
+│   └── notificationService.js
+│
+├── config/
+│   └── db.js
+│
+├── .env
+├── app.js
+├── package.json
+└── README.md
+```
 
-- **Node.js** version 14 ou plus récente.
-- **npm** (généralement installé avec Node.js).
-- **Firebase** pour les notifications push.
+## Installation and Setup
 
-### Étapes d'installation
+### Prerequisites
 
-1. Clonez ce dépôt dans votre environnement local :
+- **Node.js** (v14 or higher)
+- **MySQL** (for database)
+- **Firebase account** (for push notifications)
+- **Mapbox account** (for map and geolocation)
 
-   ```bash
-   https://github.com/Akon2020/Projet-Tutore-2024-UCB.git
-   ```
+### Step-by-Step Setup
 
-2. Naviguez dans le répertoire du projet :
+1. Clone the repository:
 
-   ```bash
-   cd Projet-Tutore-2024-UCB
-   ```
+```bash
+git clone https://github.com/Akon2020/Projet-Tutore-2024-UCB.git
+cd Projet-Tutore-2024-UCB
+```
 
-3. Installez les dépendances du projet :
+2. Install the dependencies:
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
-4. Créez le fichier de base de données SQLite :
+3. Configure environment variables:
 
-   ```bash
-   touch database.db
-   ```
+Create a `.env` file in the root directory and add the following:
 
-5. Configurez Firebase dans le fichier `config/firebaseConfig.js` en y ajoutant vos informations de projet Firebase.
+```bash
+PORT=3000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=incident_db
+JWT_SECRET=your_jwt_secret
+FIREBASE_CONFIG=your_firebase_config
+```
 
-6. Créez un fichier `.env` dans la racine du projet et ajoutez-y les variables suivantes :
+4. Set up MySQL database:
 
-   ```
-   JWT_SECRET=VotreSecretJWT
-   FIREBASE_API_KEY=VotreFirebaseAPIKey
-   FIREBASE_AUTH_DOMAIN=VotreFirebaseAuthDomain
-   FIREBASE_PROJECT_ID=VotreFirebaseProjectID
-   FIREBASE_STORAGE_BUCKET=VotreFirebaseStorageBucket
-   FIREBASE_MESSAGING_SENDER_ID=VotreFirebaseMessagingSenderID
-   FIREBASE_APP_ID=VotreFirebaseAppID
-   ```
+Create the necessary tables in MySQL by running the following commands:
 
-7. Initialisez les tables SQLite :
+```sql
+CREATE DATABASE IF NOT EXISTS securityapp;
 
-   Dans le fichier `index.js`, les tables pour les utilisateurs et les incidents sont créées automatiquement si elles n'existent pas. Vous pouvez démarrer le serveur directement.
+USE securityapp;
 
-## Démarrage
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(191) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('user', 'patrol', 'admin', 'superadmin') DEFAULT 'user',
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
-Une fois l'installation terminée, lancez l'application avec la commande suivante :
+CREATE TABLE incidents (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    patrolUserId INT DEFAULT NULL,
+    status ENUM('help', 'en cours de traitement', 'résolu') DEFAULT 'help',
+    imagePath VARCHAR(255),
+    latitude FLOAT NOT NULL,
+    longitude FLOAT NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (patrolUserId) REFERENCES users(id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE patrols (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    logo VARCHAR(255),
+    location VARCHAR(255),
+    adminId INT NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (adminId) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE patrol_applications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    patrolId INT NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (patrolId) REFERENCES patrols(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+```
+
+5. Start the application:
 
 ```bash
 npm start
 ```
 
-Le serveur démarrera sur le port 3000 par défaut. Vous pouvez accéder à l'API via `http://localhost:3000`.
+The server will be running at `http://localhost:3000`.
 
-## Structure du Projet
+## API Endpoints
 
-```
-├── config/
-│   └── firebaseConfig.js       # Configuration Firebase
-├── controllers/
-│   ├── authController.js       # Contrôleur pour l'authentification
-│   └── incidentController.js   # Contrôleur pour les incidents
-├── middleware/
-│   ├── authMiddleware.js       # Middleware d'authentification
-│   ├── rolesMiddleware.js      # Middleware de gestion des rôles
-│   └── uploadMiddleware.js     # Middleware pour le téléchargement d'images
-├── models/
-│   ├── User.js                 # Modèle pour les utilisateurs
-│   └── Incident.js             # Modèle pour les incidents
-├── routes/
-│   ├── authRoutes.js           # Routes d'authentification
-│   └── incidentRoutes.js       # Routes pour les incidents
-├── uploads/                    # Dossier pour stocker les images d'incidents
-├── .env                        # Variables d'environnement (non inclus dans le dépôt Git)
-├── database.db                 # Base de données SQLite
-├── package.json                # Dépendances du projet
-└── server.js                   # Point d'entrée principal de l'application
-```
+### Authentication
 
-## Endpoints de l'API
+- **POST /api/auth/register** - Register a new user
+- **POST /api/auth/login** - User login
 
-### Authentification
+### Incident Management
 
-- **POST** `/api/auth/register` : Inscription d'un nouvel utilisateur.
-- **POST** `/api/auth/login` : Connexion d'un utilisateur existant.
+- **POST /api/incidents** - Report a new incident (requires authentication)
+- **GET /api/incidents** - Get a list of all incidents
+- **PATCH /api/incidents/:incidentId/take** - Take responsibility for an incident (Patrol only)
+- **PATCH /api/incidents/:incidentId/resolve** - Resolve an incident (Patrol only)
 
-### Incidents
+### Patrol Management
 
-- **POST** `/api/incidents/` : Créer un nouvel incident.
-- **PATCH** `/api/incidents/:incidentId/take` : Prendre un incident en charge.
-- **PATCH** `/api/incidents/:incidentId/resolve` : Résoudre un incident.
+- **POST /api/patrols** - Create a new patrol (Admin only)
+- **GET /api/patrols** - Get a list of all patrols
 
-### Patrouilles
+## Data Validation
 
-- **POST** `/api/patrols/` : Créer une nouvelle patrouille (admin ou superadmin).
-- **PATCH** `/api/patrols/:patrolId/addMember` : Ajouter un membre à une patrouille (admin ou superadmin).
+The project includes robust validation for incoming data using `express-validator`. Validation rules are defined in the `middleware/validators.js` file.
 
-## Sécurité
+### Example Validation Rules
 
-- Les endpoints sont protégés par des jetons JWT.
-- La gestion des rôles est assurée pour permettre ou restreindre l'accès aux fonctionnalités selon le type de compte (utilisateur, patrouilleur, admin, super admin).
+- User Registration: Name, email, and password fields must be provided.
+- Incident Creation: Latitude and longitude must be valid coordinates.
 
-## Dépenses estimées
+## Security
 
-Ce projet utilise des technologies open-source et gratuites comme SQLite, Node.js, Express.js et Firebase (pour les notifications). Les coûts pourraient inclure :
+- **JWT Authentication**: JSON Web Tokens are used for securing the API. All protected routes require a valid token.
+- **Role-Based Access Control**: Different levels of access are provided based on user roles (`user`, `patrol`, `admin`, `super_admin`).
 
-1. **Hébergement** : Si vous hébergez l'application, vous devrez peut-être payer un service cloud.
-2. **Stockage Firebase** : Si vous dépassez les quotas gratuits pour l'envoi de notifications push ou le stockage des images.
+## Firebase Push Notifications
 
-## Contribution
+The system is integrated with Firebase Cloud Messaging to send real-time notifications to patrol members when incidents are reported. Notifications include the incident location and a map link for navigation.
 
-Les contributions sont les bienvenues. Si vous souhaitez apporter des améliorations ou signaler des bugs, veuillez soumettre une pull request ou ouvrir une issue.
+## Mapbox Integration
 
-## Licence
+Mapbox is used to display the location of incidents on a map. Users can view the map and see the real-time position of incidents.
 
-Ce projet est sous licence MIT.
+## Contributing
+
+If you'd like to contribute to this project, please fork the repository and use a feature branch. Pull requests are welcome!
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
 ```
 
-### Explication du README
+### Explication du contenu :
 
-- **Description** : Présente le projet et ses principales fonctionnalités.
-- **Technologies Utilisées** : Indique les outils principaux du projet.
-- **Installation** : Donne des instructions pour cloner, installer et configurer le projet sur une machine locale.
-- **Démarrage** : Comment lancer le serveur et accéder à l'API.
-- **Structure du Projet** : Décrit l'architecture des fichiers du projet.
-- **Endpoints de l'API** : Documente les principaux endpoints de l'API.
-- **Sécurité** : Résume la gestion des rôles et la protection des routes.
-- **Dépenses estimées** : Informe des coûts potentiels liés à Firebase et à l'hébergement.
-- **Contribution** : Encourage la collaboration.
-- **Licence** : Déclare la licence du projet.
+- **Project Overview** : Une description générale du projet et ses fonctionnalités.
+- **Tech Stack** : Les technologies utilisées.
+- **Project Structure** : La structure du projet avec ses différents dossiers.
+- **Installation** : Les étapes pour configurer l'application sur ton ordinateur.
+- **API Endpoints** : Les endpoints de l'API avec leurs descriptions.
+- **Data Validation & Security** : Comment les données sont validées et sécurisées.
+- **Notifications & Mapbox** : Intégration de Firebase pour les notifications et Mapbox pour la géolocalisation.
+- **Contribution & License** : Comment contribuer au projet et la licence utilisée.
 
-Ce README sera adapté selon les foctionnalités spécifiques du projet une fois fixer.
+Ce README.md sera en train d'être modifier au fur et à mesure que nous avançons dans le projet

@@ -20,6 +20,13 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+
+// =============NOT FOUND=============
+app.use((req, res) => {
+  res.status(404).render("notfound");
+});
+// =============NOT FOUND=============
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Le serveur est lancé au http://localhost:${PORT}/`);

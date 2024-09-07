@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS security-app;
+CREATE DATABASE IF NOT EXISTS securityapp;
 
-USE security-app;
+USE securityapp;
 
 -- Table pour les utilisateurs
 CREATE TABLE users (

@@ -20,6 +20,9 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/docs", (req, res) => {
+  res.render("docs");
+});
 
 // =============NOT FOUND=============
 app.use((req, res) => {

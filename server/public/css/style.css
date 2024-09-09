@@ -5,9 +5,11 @@
   text-decoration: none;
   outline: none;
 }
-body {
-  font-family: Arial, sans-serif;
+body{
   background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+.body {
   display: flex;
   justify-content: center;
   align-items: center;

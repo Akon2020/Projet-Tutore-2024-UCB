@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Ceci l'API qui permettra de faire la liaison entre l'app mobile et la partie admin du web",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"

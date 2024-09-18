@@ -30,4 +30,14 @@ router.post("/adminlogin", (req, res) => {
   });
 });
 
+router.get("/info", (req, res) => {
+  const sql = "SELECT * FROM utilisateur";
+  db.query(sql, (err, result) => {
+    if (err) {
+      return res.json({ Status: false, Error: "Query error" });
+    }
+    return res.json({ Status: true, Result: result });
+  });
+});
+
 export { router as adminAuth };

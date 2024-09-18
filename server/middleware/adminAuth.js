@@ -1,9 +1,8 @@
 import express from "express";
 import db from "../config/db.js";
 import jwt from "jsonwebtoken";
-import bcryptjs from "bcryptjs";
-import path from "path";
-import multer from "multer";
+import dotenv from "dotenv";
+dotenv.config();
 
 const router = express.Router();
 router.post("/adminlogin", (req, res) => {
@@ -31,4 +30,4 @@ router.post("/adminlogin", (req, res) => {
   });
 });
 
-export {router as adminRoute}
+export { router as adminAuth };

@@ -1,21 +1,95 @@
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import NotificationsActiveOutlinedIcon from "@mui/icons-material/NotificationsActiveOutlined";
+import DoneAllOutlinedIcon from "@mui/icons-material/DoneAllOutlined";
 import "./widget.scss";
 
-const Widget = () => {
+// eslint-disable-next-line react/prop-types
+const Widget = ({ type }) => {
+  const diff = 20;
+  let data;
+  switch (type) {
+    case "admin":
+      data = {
+        title: "Admin",
+        compte: 345,
+        link: "Tout voir",
+        icon: (
+          <AdminPanelSettingsOutlinedIcon
+            className="icon"
+            style={{
+              color: "crimson",
+              backgroundColor: "rgba(255, 0, 0, 0.2)",
+            }}
+          />
+        ),
+      };
+      break;
+    case "user":
+      data = {
+        title: "Utilisateurs",
+        compte: 345,
+        link: "Tout voir",
+        icon: (
+          <PersonOutlinedIcon
+            className="icon"
+            style={{
+              color: "goldenrod",
+              backgroundColor: "rgba(218, 165, 32, 0.2)",
+            }}
+          />
+        ),
+      };
+      break;
+    case "alerteRecu":
+      data = {
+        title: "Alertes Reçues",
+        compte: 345,
+        link: "Tout voir",
+        icon: (
+          <NotificationsActiveOutlinedIcon
+            className="icon"
+            style={{
+              color: "purple",
+              backgroundColor: "rgba(128, 0, 128, 0.2)",
+            }}
+          />
+        ),
+      };
+      break;
+    case "alerteTraiter":
+      data = {
+        title: "Alertes Traitées",
+        compte: 345,
+        link: "Tout voir",
+        icon: (
+          <DoneAllOutlinedIcon
+            className="icon"
+            style={{
+              color: "green",
+              backgroundColor: "rgba(0, 128, 0, 0.2)",
+            }}
+          />
+        ),
+      };
+      break;
+    default:
+      break;
+  }
   return (
     <div className="widget">
       <div className="left">
-        <div className="title">Utilisateurs</div>
-        <div className="compteur">3456</div>
-        <div className="link">Tout voir</div>
+        <div className="title">{data.title}</div>
+        <div className="compteur">{data.compte}</div>
+        <div className="link">{data.link}</div>
       </div>
       <div className="right">
         <div className="pourcent positive">
           <KeyboardArrowUpIcon />
-          20%
+          {diff} %
         </div>
-        <PersonOutlinedIcon className="icon" />
+        {data.icon}
       </div>
     </div>
   );

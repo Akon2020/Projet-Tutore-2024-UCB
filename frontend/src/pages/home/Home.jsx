@@ -19,7 +19,7 @@ const Home = () => {
         </div>
         <div className="graphiques">
           <Feature />
-          <Graphique/>
+          <Graphique />
         </div>
       </div>
     </div>

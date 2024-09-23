@@ -5,12 +5,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Me from "../../assets/Me.jpg";
 import "./table.scss";
 
 const TableComp = () => {
   const rows = [
     {
       id: 1,
+      img: Me,
       product: "Donnée Tab",
       customer: "Moi même",
       data: "17 Mars",
@@ -20,6 +22,7 @@ const TableComp = () => {
     },
     {
       id: 2,
+      img: Me,
       product: "Donnée Tab",
       customer: "Moi même",
       data: "17 Mars",
@@ -29,6 +32,7 @@ const TableComp = () => {
     },
     {
       id: 3,
+      img: Me,
       product: "Donnée Tab",
       customer: "Moi même",
       data: "17 Mars",
@@ -38,6 +42,7 @@ const TableComp = () => {
     },
     {
       id: 4,
+      img: Me,
       product: "Donnée Tab",
       customer: "Moi même",
       data: "17 Mars",
@@ -52,32 +57,27 @@ const TableComp = () => {
         <TableHead>
           <TableRow>
             <TableCell>En-tête 1</TableCell>
-            <TableCell align="right">En-tête 1</TableCell>
-            <TableCell align="right">En-tête 1</TableCell>
-            <TableCell align="right">En-tête 1</TableCell>
-            <TableCell align="right">En-tête 1</TableCell>
-            <TableCell align="right">En-tête 1</TableCell>
+            <TableCell>En-tête 1</TableCell>
+            <TableCell>En-tête 1</TableCell>
+            <TableCell>En-tête 1</TableCell>
+            <TableCell>En-tête 1</TableCell>
+            <TableCell>En-tête 1</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.id}</TableCell>
-              <TableCell className="tableCell" align="right">
-                {row.product}
+              <TableCell className="tableCell">
+                <div className="cellWrapper">
+                  <img src={row.img} alt="imageAvec" className="image" />
+                  {row.product}
+                </div>
               </TableCell>
-              <TableCell className="tableCell" align="right">
-                {row.product}
-              </TableCell>
-              <TableCell className="tableCell" align="right">
-                {row.product}
-              </TableCell>
-              <TableCell className="tableCell" align="right">
-                {row.product}
-              </TableCell>
-              <TableCell className="tableCell" align="right">
-                {row.product}
-              </TableCell>
+              <TableCell className="tableCell">{row.product}</TableCell>
+              <TableCell className="tableCell">{row.product}</TableCell>
+              <TableCell className="tableCell">{row.product}</TableCell>
+              <TableCell className="tableCell">{row.product}</TableCell>
             </TableRow>
           ))}
         </TableBody>

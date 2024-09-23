@@ -16,7 +16,7 @@ const Feature = () => {
         <div className="circ">
           <CircularProgressbar value={70} text="70%" strokeWidth={5} />
         </div>
-        <p className="title">Cas traité aujourd&apos;hui</p>
+        <p className="title">Cas traité(s) aujourd&apos;hui</p>
         <p className="nombre">25</p>
         <p className="desc">
           Ici, le nombre des cas déjà traités aujourd&apos;hui. Le cas en cours

@@ -55,18 +55,18 @@ const Graphique = () => {
     },
   ]; */
   const data = [
-    { name: "Janvier", Total: 1200 },
+    { name: "Janvier", Total: 1500 },
     { name: "Février", Total: 2100 },
     { name: "Mars", Total: 800 },
     { name: "Avril", Total: 1600 },
     { name: "Main", Total: 900 },
-    { name: "Juin", Total: 1700 },
+    { name: "Juin", Total: 120 },
     { name: "Juillet", Total: 900 },
-    { name: "Aôut", Total: 1700 },
+    { name: "Aôut", Total: 2000 },
     { name: "Septembre", Total: 1600 },
     { name: "Octobre", Total: 800 },
     { name: "Novembre", Total: 2100 },
-    { name: "Décembre", Total: 1200 },
+    { name: "Décembre", Total: 900 },
   ];
   return (
     <div className="chart">

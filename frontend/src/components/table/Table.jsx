@@ -28,7 +28,7 @@ const TableComp = () => {
       data: "17 Mars",
       amount: 785,
       methods: "cash on delivery",
-      status: "Approved",
+      status: "Pending",
     },
     {
       id: 3,
@@ -48,7 +48,7 @@ const TableComp = () => {
       data: "17 Mars",
       amount: 785,
       methods: "cash on delivery",
-      status: "Approved",
+      status: "Pending",
     },
   ];
   return (
@@ -77,7 +77,9 @@ const TableComp = () => {
               <TableCell className="tableCell">{row.product}</TableCell>
               <TableCell className="tableCell">{row.product}</TableCell>
               <TableCell className="tableCell">{row.product}</TableCell>
-              <TableCell className="tableCell">{row.product}</TableCell>
+              <TableCell className="tableCell">
+                <span className={`status ${row.status}`}>{row.status}</span>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

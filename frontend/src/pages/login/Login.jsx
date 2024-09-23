@@ -1,18 +1,26 @@
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./login.scss";
 
 const Login = () => {
-  const handleSubmit = () => {
+  // const [values, setValues] = useState({ email: "", password: "" });
+  // const [error, setError] = useState(null);
+  const connexion = () => {
     alert("submitted");
   };
   return (
     <div className="loginPage">
       <div className="loginForm">
+        {/* {error && (
+          <div className="erreur" role="alert">
+            {error}
+          </div>
+        )} */}
         <div className="info">
           <h2 className="title">Login | Portail admin</h2>
           <p>Connectez-vous à votre compte pour ne rien rater</p>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={connexion}>
           <label htmlFor="email"></label>
           <input
             type="email"

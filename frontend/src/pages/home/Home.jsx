@@ -21,6 +21,9 @@ const Home = () => {
           <Feature />
           <Graphique />
         </div>
+        <div className="listContainer">
+          <div className="listTitle">Alertes récentes</div>
+        </div>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import Widget from "../../components/widget/Widget";
 import "./home.scss";
 import Feature from "../../components/feature/Feature";
 import Graphique from "../../components/graphique/Graphique";
+import TableComp from "../../components/table/Table";
 
 const Home = () => {
   return (
@@ -23,6 +24,7 @@ const Home = () => {
         </div>
         <div className="listContainer">
           <div className="listTitle">Alertes récentes</div>
+          <TableComp />
         </div>
       </div>
     </div>

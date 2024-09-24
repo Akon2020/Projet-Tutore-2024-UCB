@@ -5,7 +5,7 @@ import FullScreenExitOutlinedIcon from "@mui/icons-material/FullScreenExitOutlin
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
-import Me from '../../assets/Me.jpg'
+import Me from "../../assets/Me.jpg";
 import "./navbar.scss";
 
 const Navbar = () => {
@@ -14,7 +14,7 @@ const Navbar = () => {
       <div className="wrapper">
         <div className="search">
           <input type="search" placeholder="Recherchez..." />
-          <SearchOutlinedIcon />
+          <SearchOutlinedIcon className="icon" />
         </div>
         <div className="items">
           <div className="item">

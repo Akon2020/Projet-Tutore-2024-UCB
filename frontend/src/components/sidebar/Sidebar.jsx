@@ -1,9 +1,9 @@
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import ReportIcon from '@mui/icons-material/Report';
+import ReportIcon from "@mui/icons-material/Report";
 import AssessmentIcon from "@mui/icons-material/Assessment";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./sidebar.scss";
@@ -53,6 +53,7 @@ const Sidebar = () => {
             <LogoutIcon className="icon" />
             <span>Deconnexion</span>
           </li>
+          <p className="title">THEMES</p>
         </ul>
       </div>
       <div className="bottom">

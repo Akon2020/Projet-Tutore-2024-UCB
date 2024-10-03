@@ -24,11 +24,11 @@ router.post("/adminlogin", (req, res) => {
       const token = jwt.sign(
         { role: "admin", email: userEmail },
         process.env.JWT_SECRET,
-        { expiresIn: "1d" }
+        { expiresIn: "6h" }
       );
       res.cookie("token", token, {
         httpOnly: true,
-        maxAge: 24 * 60 * 60 * 100,
+        maxAge: 6 * 60 * 60 * 100,
       });
       return res.json({ loginStatus: true, identifiant: result[0].nom[0] });
     } else {

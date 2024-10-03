@@ -61,6 +61,17 @@ router.delete("/deleteuser/:id", (req, res) => {
   });
 });
 
+router.get("/listadmin", (req, res) => {
+  const sql =
+    "SELECT * FROM utilisateur WHERE email = ? AND mot_de_passe = ? AND type_utilisateur = 'admin'";
+  db.query(sql, (err, result) => {
+    if (err) {
+      return res.json({ Status: false, Error: "Erreur de la requête" });
+    }
+    return res.json({ Status: true, Result: result });
+  });
+});
+
 router.get("/logout", (req, res) => {
   res.clearCookie("token");
   return res.json({ Status: true });

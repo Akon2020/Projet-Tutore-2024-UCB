@@ -11,19 +11,28 @@ router.get("/totalusers", (req, res) => {
   const sql = "SELECT COUNT(id_utilisateur) as utilisateur FROM utilisateur";
   db.query(sql, (err, result) => {
     if (err) {
-      return res.json({ Status: false, Error: "Query error" });
+      return res.json({ Status: false, Error: "Erreur de la requête" });
     }
     return res.json({ Status: true, Result: result });
   });
 });
-
 
 router.get("/totaladmin", (req, res) => {
   const sql =
     "SELECT COUNT(id_utilisateur) as admin FROM utilisateur WHERE type_utilisateur = 'admin'";
   db.query(sql, (err, result) => {
     if (err) {
-      return res.json({ Status: false, Error: "Query error" });
+      return res.json({ Status: false, Error: "Erreur de la requête" });
+    }
+    return res.json({ Status: true, Result: result });
+  });
+});
+
+router.get("/users", (req, res) => {
+  const sql = "SELECT * FROM utilisateur ORDER BY nom";
+  db.query(sql, (err, result) => {
+    if (err) {
+      return res.json({ Status: false, Error: "Erreur de la requête" });
     }
     return res.json({ Status: true, Result: result });
   });

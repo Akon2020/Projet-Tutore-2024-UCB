@@ -13,7 +13,7 @@ CREATE TABLE Utilisateur (
     email VARCHAR(100),
     identite_nationale VARCHAR(20),
     mot_de_passe VARCHAR(255),
-    type_utilisateur ENUM('simple', 'admin', 'simple-admin', 'super-admin')
+    type_utilisateur ENUM('simple', 'admin', 'simple-admin', 'super-admin') DEFAULT 'simple'
 ) ENGINE=InnoDB;
 
 CREATE TABLE Incident (
@@ -24,7 +24,7 @@ CREATE TABLE Incident (
     latitude DECIMAL(9,6),
     longitude DECIMAL(9,6),
     id_utilisateur INT,
-    statut ENUM('traite', 'en_cours', 'non_traite'),
+    statut ENUM('traite', 'en_cours', 'non_traite') DEFAULT 'non_traite',
     id_admin INT,
     FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur) ON DELETE CASCADE,
     FOREIGN KEY (id_admin) REFERENCES Utilisateur(id_utilisateur) ON DELETE SET NULL

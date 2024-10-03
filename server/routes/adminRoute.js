@@ -51,6 +51,16 @@ router.get("/users/:id", (req, res) => {
   });
 });
 
+router.delete("/deleteuser/:id", (req, res) => {
+  const sql = `DELETE FROM utilisateur WHERE id_utilisateur = ?`;
+  db.query(sql, [req.params.id], (err, result) => {
+    if (err) {
+      return res.json({ Status: false, Error: "Erreur de la requête" + err });
+    }
+    return res.json({ Status: true, Result: result });
+  });
+});
+
 router.get("/logout", (req, res) => {
   res.clearCookie("token");
   return res.json({ Status: true });

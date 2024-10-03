@@ -7,7 +7,7 @@ dotenv.config();
 const router = express.Router();
 router.post("/adminlogin", (req, res) => {
   const { email, mot_de_passe } = req.body;
-  if (!email || mot_de_passe) {
+  if (!email || !mot_de_passe) {
     return res.json({
       loginStatus: false,
       Error: "L'email et le mot de passe sont réquis",
@@ -30,7 +30,7 @@ router.post("/adminlogin", (req, res) => {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 100,
       });
-      return res.json({ loginStatus: true });
+      return res.json({ loginStatus: true, identifiant: result[0].nom[0] });
     } else {
       return res.json({
         loginStatus: false,

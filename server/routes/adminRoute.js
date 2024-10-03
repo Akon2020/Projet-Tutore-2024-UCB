@@ -38,6 +38,19 @@ router.get("/users", (req, res) => {
   });
 });
 
+router.get("/users/:id", (req, res) => {
+  const sql = "SELECT * FROM utilisateur WHERE id_utilisateur = ?";
+  db.query(sql, [req.params.id], (err, result) => {
+    if (err) {
+      return res.json({ Status: false, Error: "Erreur de la requête" });
+    }
+    if (result.length === 0) {
+      return res.json({ Status: true, Result: "Utilisateur non trouvé(é)" });
+    }
+    return res.json({ Status: true, Result: result });
+  });
+});
+
 router.get("/logout", (req, res) => {
   res.clearCookie("token");
   return res.json({ Status: true });

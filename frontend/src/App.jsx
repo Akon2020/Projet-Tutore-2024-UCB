@@ -13,23 +13,42 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/">
-            <Route index element={<Login />} />
-            <Route path="forget" element={<Forget />} />{" "}
+          <Route path="/" element={<Login />} />
+          <Route path="/forget" element={<Forget />} />
+
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute>
+                <List />
+              </ProtectedRoute>
+            }
+          >
             <Route
-              path="home"
+              path=":id"
               element={
                 <ProtectedRoute>
-                  <Home />
+                  <Single />
                 </ProtectedRoute>
               }
             />
-          </Route>
-
-          <Route path="users">
-            <Route index element={<List />} />
-            <Route path=":id" element={<Single />} />
-            <Route path="new" element={<New />} />
+            <Route
+              path="new"
+              element={
+                <ProtectedRoute>
+                  <New />
+                </ProtectedRoute>
+              }
+            />
           </Route>
 
           <Route path="*" element={<Notfound />} />

@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from '../../utils/axios';
+import axios from "../../utils/axios";
 import "./login.scss";
 
 const Login = () => {
-  const [values, setValues] = useState({ email: "", password: "" });
+  const [values, setValues] = useState({ email: "", mot_de_passe: "" });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
+
   const connexion = (event) => {
     event.preventDefault();
     axios
@@ -22,8 +23,15 @@ const Login = () => {
           }, 1700);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.error(err);
+        setError("Erreur lors de la connexion, veuillez réessayer.");
+        setTimeout(() => {
+          setError(null);
+        }, 1700);
+      });
   };
+
   return (
     <div className="loginPage">
       <div className="loginForm">
@@ -47,16 +55,18 @@ const Login = () => {
             className="email"
             onChange={(e) => setValues({ ...values, email: e.target.value })}
           />
-          <label htmlFor="password"></label>
+          <label htmlFor="mot_de_passe"></label>
           <input
             type="password"
-            id="password"
-            name="password"
+            id="mot_de_passe"
+            name="mot_de_passe"
             placeholder="Entrez votre mot de passe"
             className="password"
-            onChange={(e) => setValues({ ...values, password: e.target.value })}
+            onChange={(e) =>
+              setValues({ ...values, mot_de_passe: e.target.value })
+            }
           />
-          <button>Connexion</button>
+          <button type="submit">Connexion</button>
         </form>
         <div className="inp">
           <p className="forget">

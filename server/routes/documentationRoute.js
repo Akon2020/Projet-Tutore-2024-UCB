@@ -14,9 +14,9 @@ route.get("/docs", (req, res) => {
 });
 
 // =============NOT FOUND=============
-route.use((req, res) => {
+/* route.use((req, res) => {
   res.status(404).render("notfound");
-});
+}); */
 // =============NOT FOUND=============
 
 export { route as documentationRoute };

@@ -35,6 +35,7 @@ router.post("/adminlogin", async (req, res) => {
         );
         res.cookie("token", token, {
           httpOnly: true,
+          secure: true,
           maxAge: 6 * 60 * 60 * 1000,
         });
         return res.json({ loginStatus: true, identifiant: result[0].nom[0] });

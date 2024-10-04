@@ -3,6 +3,7 @@ import db from "../config/db.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
+import authMiddleware from "./authMiddleware.js";
 
 const router = express.Router();
 
@@ -32,7 +33,7 @@ router.post("/adminlogin", async (req, res) => {
           process.env.JWT_SECRET,
           { expiresIn: "6h" }
         );
-        res.cookie("token", token, {
+        res.cookie("tokenAuth", token, {
           httpOnly: true,
           maxAge: 6 * 60 * 60 * 1000,
         });
@@ -47,6 +48,10 @@ router.post("/adminlogin", async (req, res) => {
   } catch (error) {
     return res.json({ loginStatus: false, Error: "Erreur de serveur" });
   }
+});
+
+router.get("/verifytoken", authMiddleware, (req, res) => {
+  res.status(200).json({ message: "Utilisateur authentifié" });
 });
 
 export { router as adminAuth };

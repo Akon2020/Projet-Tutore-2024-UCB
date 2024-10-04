@@ -37,7 +37,7 @@ const rows = [
 
 const paginationModel = { page: 0, pageSize: 5 };
   return (
-    <div class="datatable">
+    <div className="datatable">
       <Paper sx={{ height: 400, width: '100%' }}>
       <DataGrid
         rows={rows}

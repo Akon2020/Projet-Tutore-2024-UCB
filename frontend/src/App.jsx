@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
 import Login from "./pages/login/Login";
@@ -14,7 +15,14 @@ function App() {
           <Route path="/">
             <Route index element={<Login />} />
             <Route path="forget" element={<Forget />} />
-            <Route path="home" element={<Home />} />
+            <Route
+              path="home"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
           </Route>
 
           <Route path="users">
@@ -22,7 +30,7 @@ function App() {
             <Route path=":id" element={<Single />} />
             <Route path="new" element={<New />} />
           </Route>
-          <Route path="*" element={<Notfound/>}/>
+          <Route path="*" element={<Notfound />} />
         </Routes>
       </BrowserRouter>
     </div>

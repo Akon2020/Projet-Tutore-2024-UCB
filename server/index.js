@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import path from "path";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
@@ -24,6 +25,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(cookieParser());
 app.use("/images", express.static("public/images/uploads"));
 app.use(express.static(path.join(__dirname, "public")));
 

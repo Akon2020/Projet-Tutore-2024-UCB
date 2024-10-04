@@ -33,7 +33,7 @@ router.post("/adminlogin", async (req, res) => {
           process.env.JWT_SECRET,
           { expiresIn: "6h" }
         );
-        res.cookie("tokenAuth", token, {
+        res.cookie("token", token, {
           httpOnly: true,
           maxAge: 6 * 60 * 60 * 1000,
         });

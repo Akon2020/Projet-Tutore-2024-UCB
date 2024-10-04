@@ -1,25 +1,32 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../../utils/axios";
+import axios from "../utils/axios";
 
+// eslint-disable-next-line react/prop-types
 const ProtectedRoute = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get("/auth/verifytoken")
-      .then((res) => {
-        if (res.status === 200) {
+    const verifyAuth = async () => {
+      try {
+        const response = await axios.get("/auth/verifytoken");
+        if (response.status === 200) {
           setIsAuthenticated(true);
         }
-      })
-      .catch((err) => {
-        console.error("Erreur d'authentification:", err);
+        // eslint-disable-next-line no-unused-vars
+      } catch (error) {
         setIsAuthenticated(false);
-        navigate("/login");
-      });
+        navigate("/");
+      }
+    };
+
+    verifyAuth();
   }, [navigate]);
+
+  if (isAuthenticated === null) {
+    return <div>Chargement...</div>;
+  }
 
   if (!isAuthenticated) {
     return null;

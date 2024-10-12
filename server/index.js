@@ -9,6 +9,7 @@ import db from "./config/db.js";
 import { adminAuth } from "./middleware/adminAuth.js";
 import { adminRoute } from "./routes/adminRoute.js";
 import { documentationRoute } from "./routes/documentationRoute.js";
+import { publicationRoute } from "./routes/publicationRoute.js";
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -35,6 +36,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use("/", documentationRoute);
 app.use("/auth", adminAuth);
 app.use("/admin", adminRoute);
+app.use("/api", publicationRoute);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

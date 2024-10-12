@@ -72,3 +72,13 @@ CREATE TABLE Patrouille (
     FOREIGN KEY (id_equipe) REFERENCES Utilisateur(id_utilisateur) ON DELETE SET NULL,
     FOREIGN KEY (id_admin) REFERENCES Utilisateur(id_utilisateur) ON DELETE SET NULL
 ) ENGINE=InnoDB;
+
+CREATE TABLE Publication (
+    id_publication INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(255),
+    contenu TEXT,
+    date_heure DATETIME DEFAULT CURRENT_TIMESTAMP,
+    image VARCHAR(255),
+    id_utilisateur INT,
+    FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur) ON DELETE CASCADE
+) ENGINE=InnoDB;

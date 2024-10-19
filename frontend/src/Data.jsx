@@ -1,3 +1,5 @@
+import Me from "./assets/Me.jpg";
+
 export const utilisateursCol = [
   { field: "id", headerName: "ID", width: 70 },
   {
@@ -34,7 +36,7 @@ export const utilisateurs = [
   {
     id: 1,
     nomComplet: "Akonkwa Ushindi Isaac",
-    img: "",
+    img: Me,
     sexe: "M",
     email: "akonkwaushindi@gmail.com",
     telephone: "+243970137369",

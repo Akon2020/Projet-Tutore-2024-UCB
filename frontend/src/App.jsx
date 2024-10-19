@@ -17,11 +17,11 @@ function App() {
           <Route path="/forget" element={<Forget />} />
 
           <Route
-          index
+            index
             path="/home"
             element={
               // <ProtectedRoute>
-                <Home />
+              <Home />
               // </ProtectedRoute>
             }
           />
@@ -30,8 +30,8 @@ function App() {
             path="/users"
             element={
               // <ProtectedRoute>
-                // <List />
-                <Single />
+              // <List />
+              <New />
               // </ProtectedRoute>
             }
           >
@@ -39,7 +39,7 @@ function App() {
               path=":id"
               element={
                 // <ProtectedRoute>
-                  <Single />
+                <Single />
                 // </ProtectedRoute>
               }
             />
@@ -47,7 +47,7 @@ function App() {
               path="new"
               element={
                 // <ProtectedRoute>
-                  <New />
+                <New />
                 // </ProtectedRoute>
               }
             />

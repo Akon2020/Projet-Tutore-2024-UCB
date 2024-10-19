@@ -1,0 +1,26 @@
+.new {
+  width: 100%;
+  display: flex;
+
+  .newContainer {
+    flex: 6;
+
+    .top, .bottom{
+        display: flex;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin: 20px;
+
+        h1{
+            color: #555;
+            font-size: 20px;
+        }
+        .left{
+            flex: 1;
+        }
+        .right{
+            flex: 2;
+        }
+    }
+  }
+}

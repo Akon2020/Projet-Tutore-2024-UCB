@@ -5,8 +5,8 @@ USE securityapp;
 CREATE TABLE Utilisateur (
     id_utilisateur INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(50),
-    prenom VARCHAR(50),
     post_nom VARCHAR(50),
+    prenom VARCHAR(50),
     date_naissance DATE,
     sexe CHAR(1),
     numero_tel VARCHAR(15),

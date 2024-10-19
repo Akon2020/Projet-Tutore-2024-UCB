@@ -13,7 +13,7 @@ const Widget = ({ type }) => {
     case "admin":
       data = {
         title: "Admin",
-        compte: 345,
+        compte: 3,
         link: "Tout voir",
         icon: (
           <AdminPanelSettingsOutlinedIcon
@@ -29,7 +29,7 @@ const Widget = ({ type }) => {
     case "user":
       data = {
         title: "Utilisateurs",
-        compte: 345,
+        compte: 5,
         link: "Tout voir",
         icon: (
           <PersonOutlinedIcon
@@ -45,7 +45,7 @@ const Widget = ({ type }) => {
     case "alerteRecu":
       data = {
         title: "Alertes Reçues",
-        compte: 345,
+        compte: 15,
         link: "Tout voir",
         icon: (
           <NotificationsActiveOutlinedIcon
@@ -61,7 +61,7 @@ const Widget = ({ type }) => {
     case "alerteTraiter":
       data = {
         title: "Alertes Traitées",
-        compte: 345,
+        compte: 2,
         link: "Tout voir",
         icon: (
           <DoneAllOutlinedIcon

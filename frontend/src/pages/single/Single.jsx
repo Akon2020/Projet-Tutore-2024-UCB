@@ -2,6 +2,8 @@ import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./single.scss";
 import Me from "../../assets/Me.jpg";
+import Graphique from "../../components/graphique/Graphique";
+import TableComp from "../../components/table/Table";
 
 const Single = () => {
   return (
@@ -36,9 +38,17 @@ const Single = () => {
               </div>
             </div>
           </div>
-          <div className="right"></div>
+          <div className="right">
+            <Graphique
+              aspect={3 / 1}
+              titre={"Interaction de l'utilisateur des 12 derniers mois"}
+            />
+          </div>
         </div>
-        <div className="bottom"></div>
+        <div className="bottom">
+          <h2 className="title">Alertes de l&apos;utilisateur</h2>
+          <TableComp/>
+        </div>
       </div>
     </div>
   );

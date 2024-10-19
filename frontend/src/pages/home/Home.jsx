@@ -20,7 +20,7 @@ const Home = () => {
         </div>
         <div className="graphiques">
           <Feature />
-          <Graphique />
+          <Graphique aspect={2 / 1} titre={"Analyse des derniers 12 Mois"} />
         </div>
         <div className="listContainer">
           <div className="listTitle">Alertes récentes</div>

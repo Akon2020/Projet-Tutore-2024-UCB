@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute";
+// import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
 import Login from "./pages/login/Login";
@@ -17,6 +17,7 @@ function App() {
           <Route path="/forget" element={<Forget />} />
 
           <Route
+          index
             path="/home"
             element={
               // <ProtectedRoute>
@@ -29,24 +30,25 @@ function App() {
             path="/users"
             element={
               // <ProtectedRoute>
-                <List />
+                // <List />
+                <Single />
               // </ProtectedRoute>
             }
           >
             <Route
               path=":id"
               element={
-                <ProtectedRoute>
+                // <ProtectedRoute>
                   <Single />
-                </ProtectedRoute>
+                // </ProtectedRoute>
               }
             />
             <Route
               path="new"
               element={
-                <ProtectedRoute>
+                // <ProtectedRoute>
                   <New />
-                </ProtectedRoute>
+                // </ProtectedRoute>
               }
             />
           </Route>

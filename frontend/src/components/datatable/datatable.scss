@@ -33,16 +33,25 @@
       color: green;
     }
   }
-  .colAction{
+  .colAction {
     display: flex;
     align-items: center;
     gap: 15px;
 
-    .afficherBtn{
-        padding: 2px 5px;
-        border-radius: 5px;
-        color: darkblue;
-        border: 1px dotted darkblue;
+    .afficherBtn {
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: darkblue;
+      border: 1px dotted rgba(0, 0, 139, 0.596);
+      cursor: pointer;
+    }
+
+    .supprimerBtn {
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: crimson;
+      border: 1px dotted rgba(255, 0, 0, 0.457);
+      cursor: pointer;
     }
   }
 }

@@ -15,8 +15,19 @@ export const utilisateursCol = [
   },
   { field: "sexe", headerName: "Sexe", width: 70 },
   { field: "email", headerName: "Email", width: 230 },
-  { field: "telephone", headerName: "Téléphone", width: 230 },
-  { field: "typeUtilisateur", headerName: "Type d'utilisateur", width: 230 },
+  { field: "telephone", headerName: "Téléphone", width: 150 },
+  {
+    field: "type",
+    headerName: "Type d'utilisateur",
+    width: 150,
+    renderCell: (params) => {
+      return (
+        <div className={`typeUtil ${params.row.typeUtilisateur} `}>
+          {params.row.typeUtilisateur}
+        </div>
+      );
+    },
+  },
 ];
 
 export const utilisateurs = [

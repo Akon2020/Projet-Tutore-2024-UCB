@@ -13,41 +13,37 @@ const TableComp = () => {
     {
       id: 1,
       img: Me,
-      product: "Donnée Tab",
-      customer: "Moi même",
-      data: "17 Mars",
-      amount: 785,
-      methods: "cash on delivery",
+      nom: "Akonkwa Ushindi",
+      typeAlerte: "Accident",
+      date: "17/09/2024 18:28:15",
+      lieu: "Place Mulamba",
       status: "Approved",
     },
     {
       id: 2,
-      img: Me,
-      product: "Donnée Tab",
-      customer: "Moi même",
-      data: "17 Mars",
-      amount: 785,
-      methods: "cash on delivery",
+      img: "",
+      nom: "Benedict Lubembela",
+      typeAlerte: "Vol",
+      date: "17/09/2024 18:33:06",
+      lieu: "Place Mulamba",
       status: "Pending",
     },
     {
       id: 3,
-      img: Me,
-      product: "Donnée Tab",
-      customer: "Moi même",
-      data: "17 Mars",
-      amount: 785,
-      methods: "cash on delivery",
-      status: "Approved",
+      img: "",
+      nom: "Celestine Muchaguzi",
+      typeAlerte: "Incendie",
+      date: "17/09/2024 18:35:25",
+      lieu: "Place Mulamba",
+      status: "Rejeted",
     },
     {
       id: 4,
-      img: Me,
-      product: "Donnée Tab",
-      customer: "Moi même",
-      data: "17 Mars",
-      amount: 785,
-      methods: "cash on delivery",
+      img: "",
+      nom: "Wani Barhegine",
+      typeAlerte: "Emeute",
+      date: "17/09/2024 18:42:54",
+      lieu: "Place Mulamba",
       status: "Pending",
     },
   ];
@@ -56,12 +52,13 @@ const TableComp = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>En-tête 1</TableCell>
-            <TableCell>En-tête 1</TableCell>
-            <TableCell>En-tête 1</TableCell>
-            <TableCell>En-tête 1</TableCell>
-            <TableCell>En-tête 1</TableCell>
-            <TableCell>En-tête 1</TableCell>
+            <TableCell>ID</TableCell>
+            <TableCell>Nom Complet</TableCell>
+            <TableCell>Type d&apos;alerte</TableCell>
+            <TableCell>Date-Heure</TableCell>
+            <TableCell>Lieu</TableCell>
+            <TableCell>Status</TableCell>
+            <TableCell>Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -70,15 +67,20 @@ const TableComp = () => {
               <TableCell>{row.id}</TableCell>
               <TableCell className="tableCell">
                 <div className="cellWrapper">
-                  <img src={row.img} alt="imageAvec" className="image" />
-                  {row.product}
+                  <img src={row.img} alt="Profile" className="image" />
+                  {row.nom}
                 </div>
               </TableCell>
-              <TableCell className="tableCell">{row.product}</TableCell>
-              <TableCell className="tableCell">{row.product}</TableCell>
-              <TableCell className="tableCell">{row.product}</TableCell>
+              <TableCell className="tableCell">{row.typeAlerte}</TableCell>
+              <TableCell className="tableCell">{row.date}</TableCell>
+              <TableCell className="tableCell">{row.lieu}</TableCell>
               <TableCell className="tableCell">
                 <span className={`status ${row.status}`}>{row.status}</span>
+              </TableCell>
+              <TableCell className="tableCell">
+                <button type="button" className="buttonBtn">
+                  Afficher
+                </button>
               </TableCell>
             </TableRow>
           ))}

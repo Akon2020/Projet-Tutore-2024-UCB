@@ -1,17 +1,48 @@
-.datatable{
-    height: 500px;
-    padding: 20px;
-    
-    .nomProfil{
-        display: flex;
-        align-items: center;
+.datatable {
+  height: 500px;
+  padding: 20px;
 
-        .profilImg{
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 20px;
-        }
+  .nomProfil {
+    display: flex;
+    align-items: center;
+
+    .profilImg {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
     }
+  }
+  .typeUtil {
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+
+    &.Super-admin {
+      background-color: rgba(255, 0, 0, 0.05);
+      color: crimson;
+    }
+
+    &.Admin {
+      background-color: rgba(255, 217, 0, 0.05);
+      color: goldenrod;
+    }
+    &.Simple {
+      background-color: rgba(0, 128, 0, 0.05);
+      color: green;
+    }
+  }
+  .colAction{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .afficherBtn{
+        padding: 2px 5px;
+        border-radius: 5px;
+        color: darkblue;
+        border: 1px dotted darkblue;
+    }
+  }
 }

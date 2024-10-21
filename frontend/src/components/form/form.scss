@@ -1,0 +1,57 @@
+.formPage {
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .addingForm {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+
+      h2 {
+        margin-bottom: 10px;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      input,
+      button {
+        padding: 15px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+        font-size: 15px;
+      }
+
+      button {
+        background-color: #ad0000;
+        color: #fff;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+          background-color: #750000;
+        }
+
+        &:active {
+          transform: scale(0.93);
+        }
+      }
+    }
+  }
+}

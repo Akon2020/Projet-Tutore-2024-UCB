@@ -4,8 +4,12 @@ import "./single.scss";
 import Me from "../../assets/Me.jpg";
 import Graphique from "../../components/graphique/Graphique";
 import TableComp from "../../components/table/Table";
+import { utilisateurs } from "../../Data";
+import { useParams } from "react-router-dom";
 
 const Single = () => {
+  const { id } = useParams();
+  const user = utilisateurs.find((i) => i.id === parseInt(id));
   return (
     <div className="single">
       <Sidebar />
@@ -16,20 +20,20 @@ const Single = () => {
             <div className="modifierBtn">Modifier</div>
             <h2 className="title">Information</h2>
             <div className="item">
-              <img src={Me} alt="Profile" className="itemImg" />
+              <img src={user.img} alt="Profile" className="itemImg" />
               <div className="details">
-                <h2 className="itemTitle">Akonkwa Ushindi</h2>
+                <h2 className="itemTitle">{user.nomComplet}</h2>
                 <div className="detailItem">
                   <span className="itemKey">Email: </span>
-                  <span className="itemValue">akonkwaushindi@gmail.com</span>
+                  <span className="itemValue">{user.email}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Téléphone: </span>
-                  <span className="itemValue">+243 970 137 369</span>
+                  <span className="itemValue">{user.telephone}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Type: </span>
-                  <span className="itemValue">Super-admin</span>
+                  <span className="itemValue">{user.typeUtilisateur}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Pays: </span>

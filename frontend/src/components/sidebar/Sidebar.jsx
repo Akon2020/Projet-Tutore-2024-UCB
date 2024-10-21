@@ -7,52 +7,69 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./sidebar.scss";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="top">
-        <span className="logo">SecurityApp</span>
+        <Link to="/home" style={{ textDecoration: "none" }}>
+          <span className="logo">SecurityApp</span>
+        </Link>
       </div>
       <hr />
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+          <Link to="/home">
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
+          </Link>
           <p className="title">SERVICES</p>
-          <li>
-            <PersonOutlinedIcon className="icon" />
-            <span>Utilisateurs</span>
-          </li>
-          <li>
-            <ReportIcon className="icon" />
-            <span>Incidents</span>
-          </li>
+          <Link to="/users">
+            <li>
+              <PersonOutlinedIcon className="icon" />
+              <span>Utilisateurs</span>
+            </li>
+          </Link>
+          <Link to="/incidents">
+            <li>
+              <ReportIcon className="icon" />
+              <span>Incidents</span>
+            </li>
+          </Link>
+          <Link to="/alertes">
           <li>
             <NotificationsActiveIcon className="icon" />
             <span>Alertes</span>
           </li>
+          </Link>
+          <Link to="/stat">
           <li>
             <AssessmentIcon className="icon" />
             <span>Statistique</span>
           </li>
+          </Link>
           <p className="title">COMPTE</p>
+          <Link to="/profile">
           <li>
             <AccountCircleIcon className="icon" />
             <span>Profile</span>
           </li>
+          </Link>
           <li>
             <SettingsIcon className="icon" />
             <span>Paramètres</span>
           </li>
           <p className="title">QUITTER</p>
+          <Link to="/home">
           <li>
             <LogoutIcon className="icon" />
             <span>Deconnexion</span>
           </li>
+          </Link>
           <p className="title">THEMES</p>
         </ul>
       </div>

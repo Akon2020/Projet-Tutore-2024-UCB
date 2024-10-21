@@ -1,7 +1,7 @@
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./single.scss";
-import Me from "../../assets/Me.jpg";
+import Noavatar from "../../assets/Noavatar.jpg";
 import Graphique from "../../components/graphique/Graphique";
 import TableComp from "../../components/table/Table";
 import { utilisateurs } from "../../Data";
@@ -20,7 +20,7 @@ const Single = () => {
             <div className="modifierBtn">Modifier</div>
             <h2 className="title">Information</h2>
             <div className="item">
-              <img src={user.img} alt="Profile" className="itemImg" />
+              <img src={user.img ? user.img: Noavatar} alt="Profile" className="itemImg" />
               <div className="details">
                 <h2 className="itemTitle">{user.nomComplet}</h2>
                 <div className="detailItem">

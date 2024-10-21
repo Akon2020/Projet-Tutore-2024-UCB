@@ -1,4 +1,5 @@
 import Me from "./assets/Me.jpg";
+import Noavatar from "./assets/Noavatar.jpg";
 
 export const utilisateursCol = [
   { field: "id", headerName: "ID", width: 70 },
@@ -72,7 +73,7 @@ export const utilisateurs = [
   {
     id: 5,
     nomComplet: "Testy Test",
-    img: "",
+    img: Noavatar,
     sexe: "M",
     email: "testy@test.com",
     telephone: "+243112233445",

@@ -7,6 +7,7 @@ import New from "./pages/new/New";
 import Single from "./pages/single/Single";
 import Notfound from "./pages/notfound/Notfound";
 import Forget from "./pages/forget/Forget";
+import { userInput } from "./FormSource";
 
 function App() {
   return (
@@ -15,9 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/forget" element={<Forget />} />
-
           <Route
-            index
             path="/home"
             element={
               // <ProtectedRoute>
@@ -25,34 +24,30 @@ function App() {
               // </ProtectedRoute>
             }
           />
-
           <Route
             path="/users"
             element={
               // <ProtectedRoute>
-              // <List />
-              <New />
+              <List />
               // </ProtectedRoute>
             }
-          >
-            <Route
-              path=":id"
-              element={
-                // <ProtectedRoute>
-                <Single />
-                // </ProtectedRoute>
-              }
-            />
-            <Route
-              path="new"
-              element={
-                // <ProtectedRoute>
-                <New />
-                // </ProtectedRoute>
-              }
-            />
-          </Route>
-
+          />
+          <Route
+            path="/users/new"
+            element={
+              // <ProtectedRoute>
+              <New inputs={userInput} title="Ajouter un nouvel utilisateur" />
+              // </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users/:id"
+            element={
+              // <ProtectedRoute>
+              <Single />
+              // </ProtectedRoute>
+            }
+          />
           <Route path="*" element={<Notfound />} />
         </Routes>
       </BrowserRouter>

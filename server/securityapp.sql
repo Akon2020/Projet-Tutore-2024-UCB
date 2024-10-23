@@ -12,6 +12,10 @@ CREATE TABLE Utilisateur (
     numero_tel VARCHAR(15),
     email VARCHAR(100),
     identite_nationale VARCHAR(20),
+    fonction VARCHAR(50)
+    commune VARCHAR(50),
+    quartier VARCHAR(50),
+    avenue VARCHAR(50),
     mot_de_passe VARCHAR(255),
     type_utilisateur ENUM('simple', 'admin', 'simple-admin', 'super-admin') DEFAULT 'simple'
 ) ENGINE=InnoDB;
@@ -56,9 +60,9 @@ CREATE TABLE Commentaire (
     id_commentaire INT AUTO_INCREMENT PRIMARY KEY,
     message TEXT,
     date_heure DATETIME DEFAULT CURRENT_TIMESTAMP,
-    id_actualite INT,
+    id_publication INT,
     id_utilisateur INT,
-    FOREIGN KEY (id_actualite) REFERENCES Actualite(id_actualite) ON DELETE CASCADE,
+    FOREIGN KEY (id_publication) REFERENCES Publication(id_publication) ON DELETE CASCADE,
     FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
@@ -75,7 +79,7 @@ CREATE TABLE Patrouille (
 
 CREATE TABLE Publication (
     id_publication INT AUTO_INCREMENT PRIMARY KEY,
-    titre VARCHAR(255),
+    titre TEXT,
     contenu TEXT,
     date_heure DATETIME DEFAULT CURRENT_TIMESTAMP,
     image VARCHAR(255),

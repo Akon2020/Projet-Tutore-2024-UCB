@@ -18,7 +18,7 @@ router.post("/adminlogin", async (req, res) => {
   }
 
   const sql =
-    "SELECT * FROM utilisateur WHERE email = ? AND mot_de_passe = ? AND type_utilisateur = 'admin'";
+    "SELECT * FROM utilisateur WHERE email = ? AND mot_de_passe = ? AND type_utilisateur = 'admin' OR 'super-admin'";
 
   try {
     db.query(sql, [email, mot_de_passe], (err, result) => {

@@ -99,4 +99,34 @@ router.delete("/publication/supprimer/:id", (req, res) => {
   });
 });
 
+router.put("/publication/modifier/:id", (req, res) => {
+  const { id } = req.params;
+  const { titre, contenu, image } = req.body;
+
+  if (!titre || !contenu) {
+    return res.status(400).json({
+      message: "Les champs titre et contenu sont obligatoires",
+    });
+  }
+
+  const sql = `UPDATE Publication SET titre = ?, contenu = ?, image = ? WHERE id_publication = ?`;
+
+  db.query(sql, [titre, contenu, image, id], (err, result) => {
+    if (err)
+      return res
+        .status(500)
+        .json({ Status: false, Error: "Erreur de la requête" });
+
+    if (result.affectedRows > 0) {
+      res.status(200).json({
+        message: "Publication modifiée avec succès",
+      });
+    } else {
+      res.status(404).json({
+        message: "Publication non trouvée",
+      });
+    }
+  });
+});
+
 export { router as publicationRoute };

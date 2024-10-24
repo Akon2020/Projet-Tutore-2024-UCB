@@ -141,7 +141,10 @@ router.get("/publication/:id/commentaire/afficher", (req, res) => {
   `;
 
   db.query(sql, [id], (err, result) => {
-    if (err) return res.status(500).json(err);
+    if (err)
+      return res
+        .status(500)
+        .json({ Status: false, Error: "Erreur de la requête" });
 
     res.status(200).json(result);
   });
@@ -171,5 +174,57 @@ router.post("/publication/:id/commentaire/ajouter", (req, res) => {
   });
 });
 
+router.put("/commentaire/modifier/:id", (req, res) => {
+  const { id } = req.params;
+  const { message } = req.body;
+
+  if (!message) {
+    return res.status(400).json({
+      message: "Le champ message est obligatoire",
+    });
+  }
+
+  const sql = `UPDATE Commentaire SET message = ? WHERE id_commentaire = ?`;
+
+  db.query(sql, [message, id], (err, result) => {
+    if (err)
+      return res
+        .status(500)
+        .json({ Status: false, Error: "Erreur de la requête" });
+
+    if (result.affectedRows > 0) {
+      res.status(200).json({
+        message: "Commentaire modifié avec succès",
+      });
+    } else {
+      res.status(404).json({
+        message: "Commentaire non trouvé",
+      });
+    }
+  });
+});
+
+router.delete("/commentaire/supprimer/:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = `DELETE FROM Commentaire WHERE id_commentaire = ?`;
+
+  db.query(sql, [id], (err, result) => {
+    if (err)
+      return res
+        .status(500)
+        .json({ Status: false, Error: "Erreur de la requête" });
+
+    if (result.affectedRows > 0) {
+      res.status(200).json({
+        message: "Commentaire supprimé avec succès",
+      });
+    } else {
+      res.status(404).json({
+        message: "Commentaire non trouvé",
+      });
+    }
+  });
+});
 
 export { router as publicationRoute };

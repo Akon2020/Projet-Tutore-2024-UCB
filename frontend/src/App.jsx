@@ -8,6 +8,8 @@ import Single from "./pages/single/Single";
 import Notfound from "./pages/notfound/Notfound";
 import Forget from "./pages/forget/Forget";
 import { userInput } from "./FormSource";
+import Alerte from "./pages/alerte/Alerte";
+import Singlealerte from "./pages/singlealerte/Singlealerte";
 
 function App() {
   return (
@@ -45,6 +47,22 @@ function App() {
             element={
               // <ProtectedRoute>
               <Single />
+              // </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/alertes"
+            element={
+              // <ProtectedRoute>
+              <Alerte />
+              // </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/alertes/:id"
+            element={
+              // <ProtectedRoute>
+              <Singlealerte />
               // </ProtectedRoute>
             }
           />

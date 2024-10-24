@@ -7,9 +7,22 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./sidebar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../../utils/axios";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  axios.defaults.withCredentials = true;
+  const Deconnection = () => {
+    axios
+      .get("admin/logout")
+      .then((result) => {
+        if (result.data.Status) {
+          navigate("/");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="sidebar">
       <div className="top">
@@ -41,35 +54,33 @@ const Sidebar = () => {
             </li>
           </Link>
           <Link to="/alertes">
-          <li>
-            <NotificationsActiveIcon className="icon" />
-            <span>Alertes</span>
-          </li>
+            <li>
+              <NotificationsActiveIcon className="icon" />
+              <span>Alertes</span>
+            </li>
           </Link>
           <Link to="/stat">
-          <li>
-            <AssessmentIcon className="icon" />
-            <span>Statistique</span>
-          </li>
+            <li>
+              <AssessmentIcon className="icon" />
+              <span>Statistique</span>
+            </li>
           </Link>
           <p className="title">COMPTE</p>
           <Link to="/profile">
-          <li>
-            <AccountCircleIcon className="icon" />
-            <span>Profile</span>
-          </li>
+            <li>
+              <AccountCircleIcon className="icon" />
+              <span>Profile</span>
+            </li>
           </Link>
           <li>
             <SettingsIcon className="icon" />
             <span>Paramètres</span>
           </li>
           <p className="title">QUITTER</p>
-          <Link to="/home">
-          <li>
+          <li onClick={Deconnection}>
             <LogoutIcon className="icon" />
             <span>Deconnexion</span>
           </li>
-          </Link>
           <p className="title">THEMES</p>
         </ul>
       </div>

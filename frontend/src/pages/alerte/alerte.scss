@@ -1,0 +1,13 @@
+.alerte {
+  display: flex;
+  width: 100%;
+
+  .alerteContainer {
+    flex: 6;
+
+    .title {
+      color: #555;
+      margin: 20px 10px;
+    }
+  }
+}

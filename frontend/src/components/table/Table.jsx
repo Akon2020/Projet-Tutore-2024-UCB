@@ -7,6 +7,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Me from "../../assets/Me.jpg";
 import "./table.scss";
+import { Link } from "react-router-dom";
 
 const TableComp = () => {
   const rows = [
@@ -78,9 +79,14 @@ const TableComp = () => {
                 <span className={`status ${row.status}`}>{row.status}</span>
               </TableCell>
               <TableCell className="tableCell">
-                <button type="button" className="buttonBtn">
-                  Afficher
-                </button>
+                <Link
+                  to={`/alertes/${row.id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <button type="button" className="buttonBtn">
+                    Afficher
+                  </button>
+                </Link>
               </TableCell>
             </TableRow>
           ))}

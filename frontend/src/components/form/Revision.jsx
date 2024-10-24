@@ -4,16 +4,12 @@ import "./form.scss";
 const Form = ({ inputs, title }) => {
   const [formData, setFormData] = useState({});
 
-  // Fonction de gestion des changements dans les champs du formulaire
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  // Fonction de gestion de la soumission du formulaire
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
-    // Ici, tu peux envoyer les données à une API ou faire une autre action
   };
 
   return (
@@ -38,7 +34,7 @@ const Form = ({ inputs, title }) => {
                   autoComplete="off"
                   placeholder={input.placeholder}
                   className={input.label}
-                  onChange={handleChange} // Ajout de la gestion des changements
+                  onChange={handleChange}
                 />
               </div>
             ))

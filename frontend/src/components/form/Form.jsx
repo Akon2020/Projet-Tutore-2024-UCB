@@ -65,6 +65,15 @@ const Form = () => {
             placeholder="Entrez le mot de passe de l'utilisateur"
             className="password"
           />
+          <label htmlFor="typeUtilisateur"></label>
+          <select className="typeUtilisateur" name="typeUtilisateur">
+            <optgroup label="Type d'utilisateur" style={{ padding: "1rem", fontSize: "1rem" }}>
+              <option value="simple">Utilisateur Simple</option>
+              <option value="simple-admin">Simple - Admin</option>
+              <option value="admin">Admin</option>
+              <option value="super-admin">Super - Admin</option>
+            </optgroup>
+          </select>
           <button type="submit">Enregistrer</button>
         </form>
       </div>

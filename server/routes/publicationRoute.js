@@ -76,4 +76,27 @@ router.get("/publication/afficher/:id", (req, res) => {
   });
 });
 
+router.delete("/publication/supprimer/:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = `DELETE FROM Publication WHERE id_publication = ?`;
+
+  db.query(sql, [id], (err, result) => {
+    if (err)
+      return res
+        .status(500)
+        .json({ Status: false, Error: "Erreur de la requête" });
+
+    if (result.affectedRows > 0) {
+      res.status(200).json({
+        message: "Publication supprimée avec succès",
+      });
+    } else {
+      res.status(404).json({
+        message: "Publication non trouvée",
+      });
+    }
+  });
+});
+
 export { router as publicationRoute };

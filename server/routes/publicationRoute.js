@@ -39,4 +39,41 @@ router.post("/publication/creer", (req, res) => {
   });
 });
 
+router.get("/publication/afficher", (req, res) => {
+  const sql = "SELECT * FROM Publication";
+  db.query(sql, (err, result) => {
+    if (err)
+      return res
+        .status(500)
+        .json({ Status: false, Error: "Erreur de la requête" });
+    return res.status(200).json({ Status: true, Result: result });
+  });
+});
+
+router.get("/publication/afficher/:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = `
+    SELECT p.id_publication, p.titre, p.contenu, p.image, u.nom, u.post_nom, u.prenom
+    FROM Publication p
+    JOIN utilisateur u ON p.id_utilisateur = u.id_utilisateur
+    WHERE p.id_publication = ?
+  `;
+
+  db.query(sql, [id], (err, result) => {
+    if (err)
+      return res
+        .status(500)
+        .json({ Status: false, Error: "Erreur de la requête" });
+
+    if (result.length > 0) {
+      res.status(200).json(result[0]);
+    } else {
+      res.status(404).json({
+        message: "Publication non trouvée",
+      });
+    }
+  });
+});
+
 export { router as publicationRoute };

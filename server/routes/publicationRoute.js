@@ -129,4 +129,29 @@ router.put("/publication/modifier/:id", (req, res) => {
   });
 });
 
+router.post("/publication/:id/commentaire/ajouter", (req, res) => {
+  const { id } = req.params;
+  const { message, id_utilisateur } = req.body;
+
+  if (!message || !id_utilisateur) {
+    return res.status(400).json({
+      message: "Les champs message et id_utilisateur sont obligatoires",
+    });
+  }
+
+  const sql = `INSERT INTO Commentaire (message, id_publication, id_utilisateur) VALUES (?, ?, ?)`;
+
+  db.query(sql, [message, id, id_utilisateur], (err, result) => {
+    if (err)
+      return res
+        .status(500)
+        .json({ Status: false, Error: "Erreur de la requête" });
+
+    res.status(201).json({
+      message: "Commentaire ajouté avec succès",
+      id_commentaire: result.insertId,
+    });
+  });
+});
+
 export { router as publicationRoute };

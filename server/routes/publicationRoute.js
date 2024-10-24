@@ -129,6 +129,23 @@ router.put("/publication/modifier/:id", (req, res) => {
   });
 });
 
+router.get("/publication/:id/commentaire/afficher", (req, res) => {
+  const { id } = req.params;
+
+  const sql = `
+    SELECT c.id_commentaire, c.message, c.date_heure, u.nom, u.post_nom, u.prenom
+    FROM Commentaire c
+    JOIN utilisateur u ON c.id_utilisateur = u.id_utilisateur
+    WHERE c.id_publication = ?
+    ORDER BY c.date_heure DESC
+  `;
+
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.status(500).json(err);
+
+    res.status(200).json(result);
+  });
+});
 router.post("/publication/:id/commentaire/ajouter", (req, res) => {
   const { id } = req.params;
   const { message, id_utilisateur } = req.body;
@@ -153,5 +170,6 @@ router.post("/publication/:id/commentaire/ajouter", (req, res) => {
     });
   });
 });
+
 
 export { router as publicationRoute };

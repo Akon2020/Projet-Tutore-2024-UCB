@@ -17,7 +17,6 @@ dist/
 build/
 db_sqlite3/
 env/
-chronbk 1.0.0.apk
 
 
 # React / Node.js

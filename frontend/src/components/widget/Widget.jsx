@@ -4,16 +4,35 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import NotificationsActiveOutlinedIcon from "@mui/icons-material/NotificationsActiveOutlined";
 import DoneAllOutlinedIcon from "@mui/icons-material/DoneAllOutlined";
 import "./widget.scss";
+import { useEffect, useState } from "react";
+import axios from "../../utils/axios";
+// import axios from "axios";
 
 // eslint-disable-next-line react/prop-types
 const Widget = ({ type }) => {
+  const [totalUser, setTotalUser] = useState(0);
+  const [totalAdmin, setTotalAdmin] = useState(0);
+  useEffect(() => {
+    axios
+      .get("admin/totalusers")
+      .then((result) => {
+        setTotalUser(result.data.Result[0].utilisateur);
+      })
+      .catch((err) => console.log(err));
+    axios
+      .get("admin/totaladmin")
+      .then((result) => {
+        setTotalAdmin(result.data.Result[0].admin);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   const diff = 20;
   let data;
   switch (type) {
     case "admin":
       data = {
         title: "Admin",
-        compte: 3,
+        compte: totalAdmin,
         link: "Tout voir",
         icon: (
           <AdminPanelSettingsOutlinedIcon
@@ -29,7 +48,7 @@ const Widget = ({ type }) => {
     case "user":
       data = {
         title: "Utilisateurs",
-        compte: 5,
+        compte: totalUser,
         link: "Tout voir",
         icon: (
           <PersonOutlinedIcon

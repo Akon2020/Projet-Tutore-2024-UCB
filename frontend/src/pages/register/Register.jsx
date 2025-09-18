@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
-import "./login.scss";
+import "./register.scss";
 
-const Login = () => {
+const Register = () => {
   const [values, setValues] = useState({ email: "", mot_de_passe: "" });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -12,10 +12,10 @@ const Login = () => {
   const connexion = (event) => {
     event.preventDefault();
     axios
-      .post("/auth/adminlogin", values)
+      .post("/auth/createadmin", values)
       .then((result) => {
-        if (result.data.loginStatus) {
-          navigate("/home");
+        if (result.data.success) {
+          navigate("/");
         } else {
           setError(result.data.Error);
           setTimeout(() => {
@@ -25,7 +25,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.error(err);
-        setError("Erreur lors de la connexion, veuillez réessayer.");
+        setError("Erreur lors de l'inscription, veuillez réessayer.");
         setTimeout(() => {
           setError(null);
         }, 1700);
@@ -41,10 +41,22 @@ const Login = () => {
           </div>
         )}
         <div className="info">
-          <h2 className="title">Login | Portail admin</h2>
-          <p>Connectez-vous à votre compte pour ne rien rater</p>
+          <h2 className="title">Création | Portail admin</h2>
+          <p>
+            Créez votre compte avec votre adresse mail et son mot de passe
+          </p>
         </div>
         <form onSubmit={connexion}>
+          <label htmlFor="nom"></label>
+          <input
+            type="text"
+            id="nom"
+            name="nom"
+            autoComplete="off"
+            placeholder="Entrez votre nom complet"
+            className="email"
+            onChange={(e) => setValues({ ...values, nom: e.target.value })}
+          />
           <label htmlFor="email"></label>
           <input
             type="email"
@@ -66,11 +78,11 @@ const Login = () => {
               setValues({ ...values, mot_de_passe: e.target.value })
             }
           />
-          <button type="submit">Connexion</button>
+          <button type="submit">Inscription</button>
         </form>
         <div className="inp">
           <p className="forget">
-            Vous êtes nouveau? <Link to={"/register"}>Créez un compte</Link>
+            Vous avez déjà un compte? <Link to={"/"}>Connectez-vous</Link>
           </p>
         </div>
       </div>
@@ -78,4 +90,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

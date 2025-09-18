@@ -12,7 +12,7 @@ CREATE TABLE Utilisateur (
     numero_tel VARCHAR(15),
     email VARCHAR(100),
     identite_nationale VARCHAR(20),
-    fonction VARCHAR(50)
+    fonction VARCHAR(50),
     commune VARCHAR(50),
     quartier VARCHAR(50),
     avenue VARCHAR(50),

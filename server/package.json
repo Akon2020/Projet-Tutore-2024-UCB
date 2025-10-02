@@ -34,6 +34,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
@@ -41,12 +42,14 @@
     "express-validator": "^7.2.0",
     "firebase": "^10.13.1",
     "firebase-admin": "^12.4.0",
+    "googleapis": "^160.0.0",
     "jsonwebtoken": "^9.0.2",
     "moment": "^2.30.1",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.11.0",
     "nodemon": "^3.1.4",
     "security-app-api": "file:",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "uuid": "^13.0.0"
   }
 }

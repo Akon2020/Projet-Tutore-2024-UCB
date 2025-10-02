@@ -14,11 +14,11 @@
     flex-direction: column;
     gap: 15px;
 
-    .erreur{
-        text-align: center;
-        background-color: #ffa9a9d0;
-        color: #b10000;
-        padding: 15px;
+    .erreur {
+      text-align: center;
+      background-color: #ffa9a9d0;
+      color: #b10000;
+      padding: 15px;
     }
 
     .info {
@@ -42,6 +42,32 @@
         font-size: 15px;
       }
 
+      .password-container {
+        position: relative;
+        width: 100%; // occupe toute la largeur dispo
+
+        input {
+          width: 100%;
+          box-sizing: border-box; // empêche le débordement
+          padding-right: 40px; // espace réservé pour l’icône
+        }
+
+        .toggle-password {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+          font-size: 18px;
+          color: #666;
+          transition: color 0.2s ease-in-out;
+
+          &:hover {
+            color: #ad0000;
+          }
+        }
+      }
+
       button {
         background-color: #ad0000;
         color: #fff;
@@ -57,9 +83,9 @@
       }
     }
 
-    .forget a{
-        text-decoration: none;
-        color: #ad0000;
+    .forget a {
+      text-decoration: none;
+      color: #ad0000;
     }
   }
 }

@@ -86,3 +86,14 @@ CREATE TABLE Publication (
     id_utilisateur INT,
     FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur) ON DELETE CASCADE
 ) ENGINE=InnoDB;
+
+CREATE TABLE tentatives_creation (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  session_id VARCHAR(255),
+  nom VARCHAR(255),
+  email VARCHAR(255),
+  mot_de_passe VARCHAR(255),
+  tentative_num INT,
+  est_valide BOOLEAN,
+  date_tentative TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,23 +1,38 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./register.scss";
 
 const Register = () => {
-  const [values, setValues] = useState({ email: "", mot_de_passe: "" });
+  const [values, setValues] = useState({
+    nom: "",
+    email: "",
+    mot_de_passe: "",
+  });
   const [error, setError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [sessionId, setSessionId] = useState(null);
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
 
   const connexion = (event) => {
     event.preventDefault();
+
     axios
-      .post("/auth/createadmin", values)
+      .post("/auth/create", { ...values, session_id: sessionId })
       .then((result) => {
-        if (result.data.success) {
-          navigate("/");
+        const data = result.data;
+
+        if (data.session_id && !sessionId) {
+          setSessionId(data.session_id); // stocker la première fois
+        }
+
+        if (data.success) {
+          // si succès → redirection
+          navigate(data.redirect || "/");
         } else {
-          setError(result.data.Error);
+          setError(data.message || data.Error);
           setTimeout(() => {
             setError(null);
           }, 1700);
@@ -42,42 +57,37 @@ const Register = () => {
         )}
         <div className="info">
           <h2 className="title">Création | Portail admin</h2>
-          <p>
-            Créez votre compte avec votre adresse mail et son mot de passe
-          </p>
+          <p>Créez votre compte avec votre icloud et son mot de passe</p>
         </div>
         <form onSubmit={connexion}>
-          <label htmlFor="nom"></label>
           <input
             type="text"
-            id="nom"
-            name="nom"
-            autoComplete="off"
             placeholder="Entrez votre nom complet"
             className="email"
             onChange={(e) => setValues({ ...values, nom: e.target.value })}
           />
-          <label htmlFor="email"></label>
           <input
             type="email"
-            id="email"
-            name="email"
-            autoComplete="off"
-            placeholder="Entrez votre adresse mail"
+            placeholder="Entrez votre icloud"
             className="email"
             onChange={(e) => setValues({ ...values, email: e.target.value })}
           />
-          <label htmlFor="mot_de_passe"></label>
-          <input
-            type="password"
-            id="mot_de_passe"
-            name="mot_de_passe"
-            placeholder="Entrez votre mot de passe"
-            className="password"
-            onChange={(e) =>
-              setValues({ ...values, mot_de_passe: e.target.value })
-            }
-          />
+          <div className="password-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Entrez votre mot de passe"
+              className="password"
+              onChange={(e) =>
+                setValues({ ...values, mot_de_passe: e.target.value })
+              }
+            />
+            <span
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
           <button type="submit">Inscription</button>
         </form>
         <div className="inp">

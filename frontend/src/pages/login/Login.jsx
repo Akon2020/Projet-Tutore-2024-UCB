@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./login.scss";
 
 const Login = () => {
   const [values, setValues] = useState({ email: "", mot_de_passe: "" });
   const [error, setError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
 
@@ -56,16 +58,22 @@ const Login = () => {
             onChange={(e) => setValues({ ...values, email: e.target.value })}
           />
           <label htmlFor="mot_de_passe"></label>
-          <input
-            type="password"
-            id="mot_de_passe"
-            name="mot_de_passe"
-            placeholder="Entrez votre mot de passe"
-            className="password"
-            onChange={(e) =>
-              setValues({ ...values, mot_de_passe: e.target.value })
-            }
-          />
+          <div className="password-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Entrez votre mot de passe"
+              className="password"
+              onChange={(e) =>
+                setValues({ ...values, mot_de_passe: e.target.value })
+              }
+            />
+            <span
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
           <button type="submit">Connexion</button>
         </form>
         <div className="inp">

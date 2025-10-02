@@ -53,7 +53,7 @@ const Login = () => {
             id="email"
             name="email"
             autoComplete="off"
-            placeholder="Entrez votre adresse mail"
+            placeholder="Entrez votre iCloud"
             className="email"
             onChange={(e) => setValues({ ...values, email: e.target.value })}
           />
